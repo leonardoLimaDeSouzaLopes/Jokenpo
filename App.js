@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
@@ -35,6 +35,14 @@ export default function App() {
           <Image source={require('./assets/caixa.png')}/>
         </View>
       </View>
+
+      <View style={styles.novoJogo}>
+        <Pressable>
+          <Image source={require('./assets/nova-partida.png')}/>
+        </Pressable>
+      </View>
+
+      <View style={styles.escolhas}></View>
 
     </View>
   );
@@ -84,5 +92,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  novoJogo: {
+    flex: 2,
+  },
+  escolhas: {
+    flex: 2,
   },
 });
