@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-web';
 
 export default function App() {
   return (
@@ -7,32 +8,38 @@ export default function App() {
       <StatusBar style="auto" />
       
       <View style={styles.titulo}>
-        <Image source={require('./assets/titulo.png')}/>
+        <Pressable style={styles.botaoInfo}>
+          <Image source={require('./assets/info.png')}/>
+        </Pressable>
+        
+        <View style={styles.imagemTitulo}>
+          <Image  source={require('./assets/titulo.png')}/>
+        </View>
       </View>
 
       <View style={styles.placar}>
         <View style={styles.placarTitulo}> 
-          <Text>Placar</Text>
+          <Text style={styles.textoPlacar}>Placar</Text>
         </View>
         <View style={styles.placarPontos}>
           <View style={styles.pontos}>
-            <Text>0</Text>
+            <Text style={styles.textoPontos}>0</Text>
           </View>
           <View style={styles.pontos}>
-            <Text>0</Text>
+            <Text style={styles.textoPontos}>0</Text>
           </View>
         </View> 
       </View>
 
       <View style={styles.jogo}>
-        <View style={styles.jogador}>
-          <Image source={require('./assets/caixa.png')}/>
+        <View style={styles.jogada}>
+          <Image style={styles.imagemJogada} source={require('./assets/caixa.png')}/>
         </View>
         <View style={styles.vs}>
           <Image source={require('./assets/vs.png')}/>
         </View>
-        <View style={styles.jogador}>
-          <Image source={require('./assets/caixa.png')}/>
+        <View style={styles.jogada}>
+          <Image style={styles.imagemJogada} source={require('./assets/caixa.png')}/>
         </View>
       </View>
 
@@ -42,7 +49,25 @@ export default function App() {
         </Pressable>
       </View>
 
-      <View style={styles.escolhas}></View>
+      <View style={styles.escolhas}>
+        <ScrollView>
+          <View style={styles.item}>
+            <Image source={require('./assets/pedra.png')}/>
+            <Image source={require('./assets/papel.png')}/>
+            <Image source={require('./assets/tesoura.png')}/>
+          </View>
+          <View style={styles.item}>
+            <Image source={require('./assets/arma.png')}/>
+            <Image source={require('./assets/esponja.png')}/>
+            <Image source={require('./assets/fogo.png')}/>
+          </View>
+          <View style={styles.item}>
+            <Image source={require('./assets/ar.png')}/>
+            <Image source={require('./assets/pessoa.png')}/>
+            <Image source={require('./assets/agua.png')}/>
+          </View>
+        </ScrollView>
+      </View>
 
     </View>
   );
@@ -57,11 +82,29 @@ const styles = StyleSheet.create({
   },
   titulo: {
     flex: 2,
+    width: "100%",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 50,
+  },
+  botaoInfo: {
+    justifyContent: 'left',
+    padding: 10,
+  },
+  imagemTitulo: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textoPlacar: {
+    fontSize: 50,
+  },
+  textoPontos: {
+    fontSize: 30,
+  },
   placar: {
-    flex: 3,
+    flex: 2,
     width: "100%",
   },
   placarTitulo: {
@@ -83,10 +126,15 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
   },
-  jogador: {
+  jogada: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  imagemJogada: {
+    width: '90%',
+    height: '75%',
+    margin: '10%',
   },
   vs: {
     flex: 1,
@@ -94,9 +142,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   novoJogo: {
-    flex: 2,
+    flex: 1,
   },
   escolhas: {
-    flex: 2,
+    flex: 3,
+  },
+  item: {
+    flex: 10,
+    flexDirection: 'row',
   },
 });
