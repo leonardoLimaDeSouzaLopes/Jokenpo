@@ -1,14 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { ScrollView } from 'react-native-web';
 
 export default function App() {
+
+  const [visivel, setVisivel] = useState(false);
+
   return (
     <View style={styles.container}>  
       <StatusBar style="auto" />
       
       <View style={styles.titulo}>
-        <Pressable style={styles.botaoInfo}>
+        <Pressable onPress={() => {setVisivel(true)}} style={styles.botaoInfo}>
           <Image source={require('./assets/info.png')}/>
         </Pressable>
         
@@ -69,7 +73,24 @@ export default function App() {
         </ScrollView>
       </View>
 
+      <Modal visible={visivel}>
+
+        <View style={styles.infoArea}>
+          <Image source={require('./assets/jokenpo2.png')} style={styles.jokenpo2}/>
+        </View>
+
+        <View style={styles.botaoInfo}>
+          <Pressable onPress={() => {setVisivel(false)}} style={styles.botao}>
+            <Image source={require('./assets/nova-partida.png')}/>
+          </Pressable>
+        </View>
+        
+
+      </Modal>
+      
+
     </View>
+
   );
 }
 
@@ -150,5 +171,22 @@ const styles = StyleSheet.create({
   item: {
     flex: 10,
     flexDirection: 'row',
+  },
+  infoArea: {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  jokenpo2: {
+    width: 300,
+    height: 300,
+  },
+  botaoVoltar: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  botao: {
+    margin: "auto",
   },
 });
